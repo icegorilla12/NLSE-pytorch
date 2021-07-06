@@ -53,7 +53,7 @@ def loss_func(w11,w21,w22,E,diff,doublediff,A, S,C1,C2):
 #finding the eigen function for a particular eigen value.
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-net=Net(100)
+net=Net(50)
 x = np.linspace(0,4,200)
 np.random.shuffle(x)
 x=torch.from_numpy(x)
@@ -78,10 +78,10 @@ for i in range(200):
                 w22 = fc_weights[1]
               if 'hidden.weight' in name:
                 w11 = param.detach()
-          w21=w21.reshape((1,100))
-          w22=w22.reshape((1,100))
-          diff=diff.reshape((100,1))
-          doublediff=doublediff.reshape((100,1))
+          w21=w21.reshape((1,50))
+          w22=w22.reshape((1,50))
+          diff=diff.reshape((50,1))
+          doublediff=doublediff.reshape((50,1))
           loss = loss_func(w11,w21,w22,2.45,diff,doublediff,A,S,torch.tensor(0),torch.tensor(0))
           train_loss += loss.item()
           optimizer.zero_grad()
